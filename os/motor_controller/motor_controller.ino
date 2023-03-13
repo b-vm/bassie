@@ -52,6 +52,16 @@ bool commanded = false;
 PIDController pid[N_MOTORS];
 
 
+float parseFloat(String &str) {
+    while (str[0] == ' ') str.remove(0, 1);
+    int i = 0;
+    while (str[i] != ' ') i++;
+    float f = str.substring(0, i).toFloat();
+    str.remove(0, i);
+    return f;
+}
+
+
 void setup() {
     Serial.begin(115200); // for debugging
     Serial1.begin(115200); // comms with raspberry pi
@@ -75,12 +85,12 @@ void setup() {
             if (Serial1.read() == 's') {
                 String msg = Serial1.readStringUntil('e');
                 Serial.println("Handshake started. Received: " + msg);
-                for (int i = 0; i < 10; i++) {
-                    Serial.println(String(parseFloat(msg)) + "  -  " + String(msg));
-                }
                 for (int i = 0; i < N_MOTORS; i++) {
-                    pid[i] = PIDController(parseFloat(msg), parseFloat(msg), parseFloat(msg), 1.0/CONTROL_FREQ);
-                    Serial.println("PID parameters actuator " + String(i) + ":" + pid[i].getSettings());
+                    float kp = parseFloat(msg);
+                    float ki = parseFloat(msg);
+                    float kd = parseFloat(msg);
+                    pid[i] = PIDController(kp, ki, kd, 1.0/CONTROL_FREQ);
+                    Serial.println("PID parameters actuator " + String(i) + ":" + pid[i].getSettings() + msg);
                 }
                 Serial.println("Initialization complete");
                 return;
@@ -101,15 +111,6 @@ void loop() {
     Serial.println("time spent: " + String(micros() - timeLastStep) + "us");
 }
 
-float parseFloat(String str) {
-    while (str[0] == ' ') str.remove(0, 1);
-    int i = 0;
-    while (str[i] != ' ') i++;
-    float f = str.substring(0, i).toFloat();
-    str.remove(0, i);
-    Serial.println("parseFloat: " + String(f) + "  -  " + str);
-    return f;
-}
 
 void controllerStep() {
     checkInputs();
