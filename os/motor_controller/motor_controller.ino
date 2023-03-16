@@ -9,11 +9,12 @@
 # define N_MOTORS 10
 # define CONTROL_FREQ 2000
 
-# define VERBOSE true
+# define VERBOSE true // setting to true will make it too slow to run at 2kHz
 
 
-// TOOD
+// TODO
 // - ensure micros() overflow is handled correctly
+// - ensure that it runs fast enough despite serial communication
 
 
 class PIDController {
@@ -63,6 +64,7 @@ PIDController pids[N_MOTORS];
 void setup() {
     Serial.begin(115200); // for debugging
     Serial1.begin(115200); // comunication with raspberry pi
+    // Serial1.begin(1000000); // comunication with raspberry pi
 
     assert(MOTOR_PIN_RANGE_END - MOTOR_PIN_RANGE_START + 1 == N_MOTORS);
     assert(ENCODER_PIN_RANGE_END - ENCODER_PIN_RANGE_START + 1 == N_MOTORS);
@@ -81,6 +83,7 @@ void setup() {
 }
 
 void wait_for_handshake() {
+    Serial.println("Waiting for handshake...");  
     while (true) {
         if (Serial1.available() > 0) {
             if (Serial1.read() == 's') {
@@ -91,7 +94,7 @@ void wait_for_handshake() {
                     float ki = parseNextFloat(msg);
                     float kd = parseNextFloat(msg);
                     pids[i] = PIDController(kp, ki, kd, 1.0/CONTROL_FREQ);
-                    Serial.println("PID parameters actuator " + String(i) + ":" + pids[i].getSettings() + msg);
+                    Serial.println("PID parameters actuator " + String(i) + ":" + pids[i].getSettings());
                 }
                 Serial.println("Initialization complete");
                 return;
@@ -114,17 +117,18 @@ float parseNextFloat(String &str) {
 
 void loop() {
     wait_if_needed();
+    Serial.println("time since last step: " + String(micros() - timeLastStep) + "us");
     timeLastStep = micros();
     controllerStep();
 }
 
 void wait_if_needed() {
     int waitTime = period - (micros() - timeLastStep);
-    if (waitTime < 0) {
+    if (waitTime > 0) {
         delayMicroseconds(waitTime);
     }
     if (VERBOSE) {
-        Serial.println("wait time: " + String(waitTime) + "us, available time: " + String(period) + "us");
+        Serial.println("wait time: " + String(waitTime) + "us, available time: " + String(period) + "us, micros: " + String(micros()) + "us, timeLastStep: " + String(timeLastStep) + "us");
     }
 }
 
@@ -140,8 +144,9 @@ void controllerStep() {
 // TODO: convert to angles?
 void checkTargetInputs() {
     while (Serial1.available() > 0) {
-        if (Serial1.read() == 's') {
-            String msg = Serial.readStringUntil('e');
+        if (Serial1.read() == 't') {
+            String msg = Serial1.readStringUntil('e');
+            Serial.println("Received: " + msg);
             for (int i = 0; i < N_MOTORS; i++) {
                 targets[i] = parseNextFloat(msg);
             }
@@ -171,15 +176,13 @@ void driveMotors() {
         int error = targets[i] - encoderValues[i];
         int correction = pids[i].step(error);
         if (correction > 0) {
-            digitalWrite(i + MOTOR_DIRECTION_PIN_RANGE_START, HIGH);
-            digitalWrite(i + MOTOR_DIRECTION_PIN_RANGE_START + N_MOTORS, LOW);
+            digitalWrite(2*i + MOTOR_DIRECTION_PIN_RANGE_START, HIGH);
+            digitalWrite(2*i + MOTOR_DIRECTION_PIN_RANGE_START + 1, LOW);
         } else {
-            digitalWrite(i + MOTOR_DIRECTION_PIN_RANGE_START, LOW);
-            digitalWrite(i + MOTOR_DIRECTION_PIN_RANGE_START + N_MOTORS, HIGH);
+            digitalWrite(2*i + MOTOR_DIRECTION_PIN_RANGE_START, LOW);
+            digitalWrite(2*i + MOTOR_DIRECTION_PIN_RANGE_START + 1, HIGH);
         }
-        // TODO clipping
         analogWrite(i + MOTOR_PIN_RANGE_START, min(abs(correction), 255));
-
         if (VERBOSE) {
             Serial.println("actuator " + String(i) + " error: " + String(error) + " correction: " + String(correction));
         }
