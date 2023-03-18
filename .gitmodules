@@ -1,3 +1,6 @@
 [submodule ".\\os\\tinyros\\"]
 	path = .\\os\\tinyros\\
 	url = https://github.com/b-vm/tinyros
+[submodule "cad/simulink/msra-walking-robot"]
+	path = cad/simulink/msra-walking-robot
+	url = https://github.com/b-vm/msra-walking-robot
