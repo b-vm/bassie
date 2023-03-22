@@ -5,20 +5,20 @@
 <robot
   name="bassie.SLDASM">
   <link
-    name="base_link">
+    name="pelvis">
     <inertial>
       <origin
-        xyz="-1.06215348750505E-18 -0.00141371227400464 0.005"
+        xyz="-1.0894E-18 -0.005 -0.0014137"
         rpy="0 0 0" />
       <mass
-        value="0.0303722995490468" />
+        value="0.030372" />
       <inertia
-        ixx="3.74394993207704E-06"
-        ixy="5.22892149655099E-22"
-        ixz="-5.11178856466256E-23"
-        iyy="2.1695222378973E-05"
-        iyz="-4.36643847959883E-23"
-        izz="2.49329673185659E-05" />
+        ixx="3.7439E-06"
+        ixy="5.1118E-23"
+        ixz="8.5129E-22"
+        iyy="2.4933E-05"
+        iyz="-1.5293E-22"
+        izz="2.1695E-05" />
     </inertial>
     <visual>
       <origin
@@ -26,12 +26,12 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://bassie.SLDASM/meshes/base_link.STL" />
+          filename="/meshes/pelvis.STL" />
       </geometry>
       <material
         name="">
         <color
-          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+          rgba="1 1 1 1" />
       </material>
     </visual>
     <collision>
@@ -40,7 +40,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://bassie.SLDASM/meshes/base_link.STL" />
+          filename="/meshes/pelvis.STL" />
       </geometry>
     </collision>
   </link>
@@ -54,8 +54,8 @@
         value="0.0104219467105846" />
       <inertia
         ixx="1.70463571115033E-06"
-        ixy="5.25259688971173E-23"
-        ixz="-2.89099624087283E-22"
+        ixy="-3.84638984837158E-23"
+        ixz="-2.40295967946655E-22"
         iyy="1.38650049834199E-06"
         iyz="-3.73929543448507E-07"
         izz="1.386500498342E-06" />
@@ -66,12 +66,12 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://bassie.SLDASM/meshes/right_hip_roll.STL" />
+          filename="/meshes/right_hip_roll.STL" />
       </geometry>
       <material
         name="">
         <color
-          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+          rgba="1 1 1 1" />
       </material>
     </visual>
     <collision>
@@ -80,38 +80,43 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://bassie.SLDASM/meshes/right_hip_roll.STL" />
+          filename="/meshes/right_hip_roll.STL" />
       </geometry>
     </collision>
   </link>
   <joint
     name="right_hip_roll"
-    type="continuous">
+    type="revolute">
     <origin
-      xyz="-0.0398271658880066 0 -0.00930710361371741"
-      rpy="1.5707963267949 -0.00503265783860925 0" />
+      xyz="-0.039827 0 -0.0093071"
+      rpy="1.5708 -0.0050327 0" />
     <parent
-      link="base_link" />
+      link="pelvis" />
     <child
       link="right_hip_roll" />
     <axis
       xyz="0 0 1" />
+    <limit
+      lower="-1"
+      upper="1"
+      effort="100"
+      velocity="100" />
   </joint>
   <link
     name="right_hip_pitch">
     <inertial>
       <origin
-        xyz="6.93889390390723E-18 -0.0110100876761759 -0.010989051191167"
+        xyz="6.9389E-18 -0.01101 -0.010989"
         rpy="0 0 0" />
       <mass
-        value="0.0104219467105846" />
+        value="0.010422" />
       <inertia
-        ixx="1.70463571115033E-06"
-        ixy="-2.24993126614424E-22"
-        ixz="-7.03049353571691E-23"
-        iyy="1.38650049834199E-06"
-        iyz="-3.73929543448508E-07"
-        izz="1.386500498342E-06" />
+        ixx="1.7046E-06"
+        ixy="-1.5882E-22"
+        ixz="-1.052E-22"
+        iyy="1.3865E-06"
+        iyz="-3.7393E-07"
+        izz="1.3865E-06" />
     </inertial>
     <visual>
       <origin
@@ -119,12 +124,12 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://bassie.SLDASM/meshes/right_hip_pitch.STL" />
+          filename="/meshes/right_hip_pitch.STL" />
       </geometry>
       <material
         name="">
         <color
-          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+          rgba="1 1 1 1" />
       </material>
     </visual>
     <collision>
@@ -133,38 +138,43 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://bassie.SLDASM/meshes/right_hip_pitch.STL" />
+          filename="/meshes/right_hip_pitch.STL" />
       </geometry>
     </collision>
   </link>
   <joint
     name="right_hip_pitch"
-    type="continuous">
+    type="revolute">
     <origin
-      xyz="0 -0.0220008611326573 -0.0219999999999999"
-      rpy="-1.57079632679503 -1.49330843492653 0" />
+      xyz="0 -0.022001 -0.022"
+      rpy="-1.5708 -1.4933 0" />
     <parent
       link="right_hip_roll" />
     <child
       link="right_hip_pitch" />
     <axis
       xyz="0 0 1" />
+    <limit
+      lower="-1"
+      upper="1"
+      effort="100"
+      velocity="100" />
   </joint>
   <link
     name="right_hip_yaw">
     <inertial>
       <origin
-        xyz="-0.00592586158781309 -0.0525800795674847 0.0617044572537044"
+        xyz="-0.0059259 -0.05258 0.061704"
         rpy="0 0 0" />
       <mass
-        value="0.107018899099017" />
+        value="0.10702" />
       <inertia
-        ixx="0.00059179926724669"
-        ixy="1.59874782272844E-08"
-        ixz="-1.27083232085646E-08"
-        iyy="0.000308153017538767"
-        iyz="0.000258492128476062"
-        izz="0.000284954745396214" />
+        ixx="0.0005918"
+        ixy="1.5987E-08"
+        ixz="-1.2708E-08"
+        iyy="0.00030815"
+        iyz="0.00025849"
+        izz="0.00028495" />
     </inertial>
     <visual>
       <origin
@@ -172,12 +182,12 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://bassie.SLDASM/meshes/right_hip_yaw.STL" />
+          filename="/meshes/right_hip_yaw.STL" />
       </geometry>
       <material
         name="">
         <color
-          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+          rgba="1 1 1 1" />
       </material>
     </visual>
     <collision>
@@ -186,38 +196,43 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://bassie.SLDASM/meshes/right_hip_yaw.STL" />
+          filename="/meshes/right_hip_yaw.STL" />
       </geometry>
     </collision>
   </link>
   <joint
     name="right_hip_yaw"
-    type="continuous">
+    type="revolute">
     <origin
-      xyz="0 -0.0210679578739459 -0.0219991388673428"
-      rpy="1.47617469063059 0 1.5707963267949" />
+      xyz="0 -0.021068 -0.021999"
+      rpy="1.4762 0 1.5708" />
     <parent
       link="right_hip_pitch" />
     <child
       link="right_hip_yaw" />
     <axis
       xyz="1 0 0" />
+    <limit
+      lower="-2"
+      upper="2"
+      effort="100"
+      velocity="100" />
   </joint>
   <link
     name="right_knee">
     <inertial>
       <origin
-        xyz="-0.00593203882801992 -0.0846027700738239 0.0016889266790939"
+        xyz="-0.005932 -0.084603 0.0016889"
         rpy="0 0 0" />
       <mass
-        value="0.0744483035148738" />
+        value="0.074448" />
       <inertia
-        ixx="0.000164659952023344"
-        ixy="-9.58736218068259E-12"
-        ixz="1.54854982139298E-11"
-        iyy="1.77016919953597E-05"
-        iyz="-3.96686437308627E-06"
-        izz="0.000148199064802319" />
+        ixx="0.00016466"
+        ixy="-4.6137E-12"
+        ixz="1.4921E-11"
+        iyy="1.7702E-05"
+        iyz="-3.9669E-06"
+        izz="0.0001482" />
     </inertial>
     <visual>
       <origin
@@ -225,12 +240,12 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://bassie.SLDASM/meshes/right_knee.STL" />
+          filename="/meshes/right_knee.STL" />
       </geometry>
       <material
         name="">
         <color
-          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+          rgba="1 1 1 1" />
       </material>
     </visual>
     <collision>
@@ -239,38 +254,43 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://bassie.SLDASM/meshes/right_knee.STL" />
+          filename="/meshes/right_knee.STL" />
       </geometry>
     </collision>
   </link>
   <joint
     name="right_knee"
-    type="continuous">
+    type="revolute">
     <origin
-      xyz="0 -0.14142135623731 0.141421356237308"
-      rpy="0.177493987253612 0 0" />
+      xyz="0 -0.14142 0.14142"
+      rpy="0.17749 0 0" />
     <parent
       link="right_hip_yaw" />
     <child
       link="right_knee" />
     <axis
       xyz="1 0 0" />
+    <limit
+      lower="-2"
+      upper="2"
+      effort="100"
+      velocity="100" />
   </joint>
   <link
-    name="right_foot">
+    name="right_ankle">
     <inertial>
       <origin
-        xyz="-0.00593204212605349 -0.0117377956787896 0.00934592910539235"
+        xyz="-0.005932 -0.011738 0.0093459"
         rpy="0 0 0" />
       <mass
-        value="0.0141163998019807" />
+        value="0.014116" />
       <inertia
-        ixx="9.24279911044944E-06"
-        ixy="-9.92616735063633E-23"
-        ixz="-7.37845106397301E-21"
-        iyy="8.95233915878566E-06"
-        iyz="1.01243243186786E-07"
-        izz="5.25733281696791E-07" />
+        ixx="9.2428E-06"
+        ixy="-1.1911E-22"
+        ixz="-7.1071E-21"
+        iyy="8.9523E-06"
+        iyz="1.0124E-07"
+        izz="5.2573E-07" />
     </inertial>
     <visual>
       <origin
@@ -278,12 +298,12 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://bassie.SLDASM/meshes/right_foot.STL" />
+          filename="/meshes/right_ankle.STL" />
       </geometry>
       <material
         name="">
         <color
-          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+          rgba="1 1 1 1" />
       </material>
     </visual>
     <collision>
@@ -292,38 +312,43 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://bassie.SLDASM/meshes/right_foot.STL" />
+          filename="/meshes/right_ankle.STL" />
       </geometry>
     </collision>
   </link>
   <joint
-    name="right_foot"
-    type="continuous">
+    name="right_ankle"
+    type="revolute">
     <origin
       xyz="0 -0.18 0"
-      rpy="-0.170825167775941 0 0" />
+      rpy="-0.17083 0 0" />
     <parent
       link="right_knee" />
     <child
-      link="right_foot" />
+      link="right_ankle" />
     <axis
       xyz="1 0 0" />
+    <limit
+      lower="-2"
+      upper="2"
+      effort="100"
+      velocity="100" />
   </joint>
   <link
     name="left_hip_roll">
     <inertial>
       <origin
-        xyz="0 -0.0110100876761759 -0.0109899123238242"
+        xyz="0.0019531 -0.010835 -0.01099"
         rpy="0 0 0" />
       <mass
-        value="0.0104219467105846" />
+        value="0.010422" />
       <inertia
-        ixx="1.70463571115033E-06"
-        ixy="0"
-        ixz="-2.77932685817817E-22"
-        iyy="1.38650049834199E-06"
-        iyz="-3.73929543448508E-07"
-        izz="1.386500498342E-06" />
+        ixx="1.6946E-06"
+        ixy="5.5539E-08"
+        ixz="6.6331E-08"
+        iyy="1.3965E-06"
+        iyz="-3.68E-07"
+        izz="1.3865E-06" />
     </inertial>
     <visual>
       <origin
@@ -331,12 +356,12 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://bassie.SLDASM/meshes/left_hip_roll.STL" />
+          filename="/meshes/left_hip_roll.STL" />
       </geometry>
       <material
         name="">
         <color
-          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+          rgba="1 1 1 1" />
       </material>
     </visual>
     <collision>
@@ -345,38 +370,43 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://bassie.SLDASM/meshes/left_hip_roll.STL" />
+          filename="/meshes/left_hip_roll.STL" />
       </geometry>
     </collision>
   </link>
   <joint
     name="left_hip_roll"
-    type="continuous">
+    type="revolute">
     <origin
-      xyz="0.0398271658880066 0 -0.00930710361371742"
-      rpy="1.5707963267949 0.214726254431021 0" />
+      xyz="0.039827 0 -0.0093071"
+      rpy="1.5708 0.21473 0" />
     <parent
-      link="base_link" />
+      link="pelvis" />
     <child
       link="left_hip_roll" />
     <axis
       xyz="0 0 1" />
+    <limit
+      lower="-1"
+      upper="1"
+      effort="100"
+      velocity="100" />
   </joint>
   <link
     name="left_hip_pitch">
     <inertial>
       <origin
-        xyz="-7.97972798949331E-17 -0.0110100876761759 -0.0181479737789445"
+        xyz="-0.00011924416782334 -0.0166849153375323 -0.0156729058227143"
         rpy="0 0 0" />
       <mass
         value="0.0104219467105846" />
       <inertia
-        ixx="1.70463571115033E-06"
-        ixy="-2.42529355600548E-21"
-        ixz="-3.0205519128665E-21"
-        iyy="1.38650049834199E-06"
-        iyz="-3.73929543448507E-07"
-        izz="1.386500498342E-06" />
+        ixx="1.70455481644992E-06"
+        ixy="-6.14799554501199E-09"
+        ixz="-5.34124844156622E-09"
+        iyy="1.25609121903428E-06"
+        iyz="-3.5037918893552E-07"
+        izz="1.51699067235013E-06" />
     </inertial>
     <visual>
       <origin
@@ -384,12 +414,12 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://bassie.SLDASM/meshes/left_hip_pitch.STL" />
+          filename="/meshes/left_hip_pitch.STL" />
       </geometry>
       <material
         name="">
         <color
-          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+          rgba="1 1 1 1" />
       </material>
     </visual>
     <collision>
@@ -398,38 +428,43 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://bassie.SLDASM/meshes/left_hip_pitch.STL" />
+          filename="/meshes/left_hip_pitch.STL" />
       </geometry>
     </collision>
   </link>
   <joint
     name="left_hip_pitch"
-    type="continuous">
+    type="revolute">
     <origin
-      xyz="0 -0.0148419385448798 -0.022"
-      rpy="-1.57079632679543 1.55465607457052 0" />
+      xyz="0 -0.014842 -0.022"
+      rpy="-1.5708 1.5547 0" />
     <parent
       link="left_hip_roll" />
     <child
       link="left_hip_pitch" />
     <axis
       xyz="0 0 1" />
+    <limit
+      lower="-1"
+      upper="1"
+      effort="100"
+      velocity="100" />
   </joint>
   <link
     name="left_hip_yaw">
     <inertial>
       <origin
-        xyz="0.0270060679744188 -0.0525803388745518 0.0617026960608309"
+        xyz="0.048673511103284 -0.0739656579197749 -0.00731838859434158"
         rpy="0 0 0" />
       <mass
-        value="0.107025089754586" />
+        value="0.107042315965997" />
       <inertia
-        ixx="0.000591796865195477"
-        ixy="1.5920156627715E-08"
-        ixz="-1.26043704051829E-08"
-        iyy="0.000308150575837964"
-        iyz="0.000258490289488377"
-        izz="0.000284954790951833" />
+        ixx="0.000574314695218096"
+        ixy="9.54278613038549E-05"
+        ixz="1.65090849010936E-05"
+        iyy="6.87578213038094E-05"
+        iyz="-8.09892660763148E-05"
+        izz="0.000541846725280536" />
     </inertial>
     <visual>
       <origin
@@ -437,12 +472,12 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://bassie.SLDASM/meshes/left_hip_yaw.STL" />
+          filename="/meshes/left_hip_yaw.STL" />
       </geometry>
       <material
         name="">
         <color
-          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+          rgba="1 1 1 1" />
       </material>
     </visual>
     <collision>
@@ -451,38 +486,43 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://bassie.SLDASM/meshes/left_hip_yaw.STL" />
+          filename="/meshes/left_hip_yaw.STL" />
       </geometry>
     </collision>
   </link>
   <joint
     name="left_hip_yaw"
-    type="continuous">
+    type="revolute">
     <origin
-      xyz="0 0 -0.0291580614551205"
-      rpy="1.4219328867289 0 -1.5707963267949" />
+      xyz="0 0 -0.029158"
+      rpy="1.4219 0 -1.5708" />
     <parent
       link="left_hip_pitch" />
     <child
       link="left_hip_yaw" />
     <axis
       xyz="1 0 0" />
+    <limit
+      lower="-2"
+      upper="2"
+      effort="100"
+      velocity="100" />
   </joint>
   <link
     name="left_knee">
     <inertial>
       <origin
-        xyz="0.00558876235892673 -0.0846027767105478 0.00168890999630866"
+        xyz="0.0634278158805573 -0.157483063920496 -0.161225323470923"
         rpy="0 0 0" />
       <mass
-        value="0.0744483691081149" />
+        value="0.0744483650191621" />
       <inertia
-        ixx="0.000164660118846728"
-        ixy="-2.22688915338526E-11"
-        ixz="1.73008555308805E-11"
-        iyy="1.77017181832273E-05"
-        iyz="-3.96685985927357E-06"
-        izz="0.000148199206110422" />
+        ixx="0.000160028757295627"
+        ixy="2.56419476464298E-05"
+        ixz="-1.96246587058239E-07"
+        iyy="2.22541214478718E-05"
+        iyz="2.67441013425283E-06"
+        izz="0.000148260278969676" />
     </inertial>
     <visual>
       <origin
@@ -490,12 +530,12 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://bassie.SLDASM/meshes/left_knee.STL" />
+          filename="/meshes/left_knee.STL" />
       </geometry>
       <material
         name="">
         <color
-          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+          rgba="1 1 1 1" />
       </material>
     </visual>
     <collision>
@@ -504,38 +544,43 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://bassie.SLDASM/meshes/left_knee.STL" />
+          filename="/meshes/left_knee.STL" />
       </geometry>
     </collision>
   </link>
   <joint
     name="left_knee"
-    type="continuous">
+    type="revolute">
     <origin
-      xyz="0.0214112408562416 -0.141421356237311 0.141421356237309"
-      rpy="0.161421391587217 0 0" />
+      xyz="0.021411 -0.14142 0.14142"
+      rpy="0.16142 0 0" />
     <parent
       link="left_hip_yaw" />
     <child
       link="left_knee" />
     <axis
       xyz="1 0 0" />
+    <limit
+      lower="-2"
+      upper="2"
+      effort="100"
+      velocity="100" />
   </joint>
   <link
-    name="left_foot">
+    name="left_ankle">
     <inertial>
       <origin
-        xyz="0.00558875914375766 -0.0117377956787893 0.00934592910539334"
+        xyz="0.0819824299887631 -0.0680715298382376 -0.154093152648304"
         rpy="0 0 0" />
       <mass
-        value="0.0141163998019807" />
+        value="0.0141163998019808" />
       <inertia
-        ixx="9.24279911044944E-06"
-        ixy="-3.6892255319865E-22"
-        ixz="1.2190160687194E-20"
-        iyy="8.95233915878566E-06"
-        iyz="1.01243243186786E-07"
-        izz="5.25733281696791E-07" />
+        ixx="9.22211598450274E-06"
+        ixy="5.56287070206116E-08"
+        ixz="3.20279364054552E-07"
+        iyy="8.95955428550254E-06"
+        iyz="-1.54088588333767E-07"
+        izz="5.39201280926635E-07" />
     </inertial>
     <visual>
       <origin
@@ -543,12 +588,12 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://bassie.SLDASM/meshes/left_foot.STL" />
+          filename="/meshes/left_ankle.STL" />
       </geometry>
       <material
         name="">
         <color
-          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+          rgba="1 1 1 1" />
       </material>
     </visual>
     <collision>
@@ -557,21 +602,26 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://bassie.SLDASM/meshes/left_foot.STL" />
+          filename="/meshes/left_ankle.STL" />
       </geometry>
     </collision>
   </link>
   <joint
-    name="left_foot"
-    type="continuous">
+    name="left_ankle"
+    type="revolute">
     <origin
       xyz="0 -0.18 0"
-      rpy="-0.0902292054140496 0 0" />
+      rpy="-0.090229 0 0" />
     <parent
       link="left_knee" />
     <child
-      link="left_foot" />
+      link="left_ankle" />
     <axis
       xyz="1 0 0" />
+    <limit
+      lower="-2"
+      upper="2"
+      effort="100"
+      velocity="100" />
   </joint>
 </robot>
