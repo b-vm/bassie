@@ -26,7 +26,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="/meshes/pelvis.STL" />
+          filename="meshes/pelvis.STL" />
       </geometry>
       <material
         name="">
@@ -40,7 +40,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="/meshes/pelvis.STL" />
+          filename="meshes/pelvis.STL" />
       </geometry>
     </collision>
   </link>
@@ -66,7 +66,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="/meshes/right_hip_roll.STL" />
+          filename="meshes/right_hip_roll.STL" />
       </geometry>
       <material
         name="">
@@ -80,7 +80,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="/meshes/right_hip_roll.STL" />
+          filename="meshes/right_hip_roll.STL" />
       </geometry>
     </collision>
   </link>
@@ -124,7 +124,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="/meshes/right_hip_pitch.STL" />
+          filename="meshes/right_hip_pitch.STL" />
       </geometry>
       <material
         name="">
@@ -138,7 +138,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="/meshes/right_hip_pitch.STL" />
+          filename="meshes/right_hip_pitch.STL" />
       </geometry>
     </collision>
   </link>
@@ -182,7 +182,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="/meshes/right_hip_yaw.STL" />
+          filename="meshes/right_hip_yaw.STL" />
       </geometry>
       <material
         name="">
@@ -196,7 +196,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="/meshes/right_hip_yaw.STL" />
+          filename="meshes/right_hip_yaw.STL" />
       </geometry>
     </collision>
   </link>
@@ -209,7 +209,7 @@
     <parent
       link="right_hip_pitch" />
     <child
-      link="right_hip_yaw" />
+      link="right_hip_yaw" />0
     <axis
       xyz="1 0 0" />
     <limit
@@ -240,7 +240,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="/meshes/right_knee.STL" />
+          filename="meshes/right_knee.STL" />
       </geometry>
       <material
         name="">
@@ -254,7 +254,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="/meshes/right_knee.STL" />
+          filename="meshes/right_knee.STL" />
       </geometry>
     </collision>
   </link>
@@ -298,7 +298,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="/meshes/right_ankle.STL" />
+          filename="meshes/right_ankle.STL" />
       </geometry>
       <material
         name="">
@@ -312,7 +312,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="/meshes/right_ankle.STL" />
+          filename="meshes/right_ankle.STL" />
       </geometry>
     </collision>
   </link>
@@ -356,7 +356,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="/meshes/left_hip_roll.STL" />
+          filename="meshes/left_hip_roll.STL" />
       </geometry>
       <material
         name="">
@@ -370,7 +370,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="/meshes/left_hip_roll.STL" />
+          filename="meshes/left_hip_roll.STL" />
       </geometry>
     </collision>
   </link>
@@ -414,7 +414,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="/meshes/left_hip_pitch.STL" />
+          filename="meshes/left_hip_pitch.STL" />
       </geometry>
       <material
         name="">
@@ -428,7 +428,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="/meshes/left_hip_pitch.STL" />
+          filename="meshes/left_hip_pitch.STL" />
       </geometry>
     </collision>
   </link>
@@ -472,7 +472,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="/meshes/left_hip_yaw.STL" />
+          filename="meshes/left_hip_yaw.STL" />
       </geometry>
       <material
         name="">
@@ -486,7 +486,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="/meshes/left_hip_yaw.STL" />
+          filename="meshes/left_hip_yaw.STL" />
       </geometry>
     </collision>
   </link>
@@ -530,7 +530,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="/meshes/left_knee.STL" />
+          filename="meshes/left_knee.STL" />
       </geometry>
       <material
         name="">
@@ -544,7 +544,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="/meshes/left_knee.STL" />
+          filename="meshes/left_knee.STL" />
       </geometry>
     </collision>
   </link>
@@ -588,7 +588,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="/meshes/left_ankle.STL" />
+          filename="meshes/left_ankle.STL" />
       </geometry>
       <material
         name="">
@@ -602,7 +602,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="/meshes/left_ankle.STL" />
+          filename="meshes/left_ankle.STL" />
       </geometry>
     </collision>
   </link>
